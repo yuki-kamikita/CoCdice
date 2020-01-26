@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/backGround"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".MainActivity">
+
+    <NumberPicker
+        android:id="@+id/numberPickerQuantity"
+        android:layout_width="80dp"
+        android:layout_height="150dp"
+        android:descendantFocusability="blocksDescendants"
+        android:scrollbars="horizontal|vertical|none"
+        android:theme="@style/NumberPicker"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/textD"
+        app:layout_constraintEnd_toStartOf="@+id/textD"
+        app:layout_constraintTop_toTopOf="@+id/textD"
+        app:layout_constraintVertical_bias="0.493" />
+
+    <TextView
+        android:id="@+id/textD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="160dp"
+        android:gravity="center_horizontal"
+        android:text="@string/dice"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="32sp"
+        android:theme="@style/NumberPicker"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <NumberPicker
+        android:id="@+id/numberPickerType"
+        android:layout_width="80dp"
+        android:layout_height="150dp"
+        android:background="#00862C2C"
+        android:descendantFocusability="blocksDescendants"
+        android:theme="@style/NumberPicker"
+        app:layout_constraintBottom_toBottomOf="@+id/textD"
+        app:layout_constraintStart_toEndOf="@+id/textD"
+        app:layout_constraintTop_toTopOf="@+id/textD"
+        app:layout_constraintVertical_bias="0.493" />
+
+    <NumberPicker
+        android:id="@+id/numberPickerSan"
+        android:layout_width="49dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:descendantFocusability="blocksDescendants"
+        android:scrollbars="horizontal|vertical|none"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSan"
+        app:layout_constraintEnd_toEndOf="@+id/button1d10"
+        app:layout_constraintStart_toEndOf="@+id/buttonSan"
+        app:layout_constraintTop_toTopOf="@+id/buttonSan" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="409dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@android:color/black"
+        android:text="Hello World!"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Switch
+        android:id="@+id/switchSan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/switchSan"
+        app:layout_constraintEnd_toEndOf="@+id/buttonSan"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSan" />
+
+    <Button
+        android:id="@+id/button1d4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="@string/button1d4"
+        app:layout_constraintBottom_toBottomOf="@+id/button1d6"
+        app:layout_constraintEnd_toStartOf="@+id/button1d6"
+        app:layout_constraintTop_toTopOf="@+id/button1d6" />
+
+    <Button
+        android:id="@+id/button1d6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/button1d6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/button1d10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="@string/button1d10"
+        app:layout_constraintBottom_toBottomOf="@+id/button1d6"
+        app:layout_constraintStart_toEndOf="@+id/button1d6"
+        app:layout_constraintTop_toTopOf="@+id/button1d6" />
+
+    <Button
+        android:id="@+id/button1d100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button1d100"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSan"
+        app:layout_constraintEnd_toEndOf="@+id/button1d4"
+        app:layout_constraintStart_toStartOf="@+id/button1d4"
+        app:layout_constraintTop_toTopOf="@+id/buttonSan" />
+
+    <Button
+        android:id="@+id/buttonSan"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/buttonSanc"
+        app:layout_constraintStart_toStartOf="@+id/button1d6"
+        app:layout_constraintTop_toBottomOf="@+id/button1d6" />
+
+    <Button
+        android:id="@+id/buttonClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonClear"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/buttonRoll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonRoll"
+        app:layout_constraintBottom_toBottomOf="@+id/textD"
+        app:layout_constraintStart_toEndOf="@+id/numberPickerType"
+        app:layout_constraintTop_toTopOf="@+id/textD" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
