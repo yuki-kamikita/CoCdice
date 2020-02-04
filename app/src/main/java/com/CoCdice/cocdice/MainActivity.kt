@@ -7,25 +7,22 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    private var line: Int = 0
-    private val maxLine: Int = 10
-    private val list: List<String> = mutableListOf("")
     private var switch: Boolean = false
 
     /* ダイスを振る */
     private fun diceRoll(quantity: Int ,type: Int ,string: String = ""): String {
         var rand = 0
-//        val history = textView.text
+        val history = textView.text
         var extreme = ""
         var san = ""
         var text = ""
         var value: Int
 
-        if (quantity > 1) {
+        if (quantity > 1) { // 複数ダイス
             for (i in 1..quantity) {
                 rand += Random.nextInt(type) + 1
             }
-        } else {
+        } else { // ダイス1つ
             rand = Random.nextInt(type) + 1
             if (type == 100 && string != "SAN Check" && switch == false) { // 1D100時、クリファン表記
                 if (rand <= 5){
@@ -35,11 +32,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        if (line > maxLine) {
-            // １行削除
-        }
 
-        if (switch == true) { // SAN値減少
+        if (switch == true && string != "SAN Check") { // SAN値減少
             value = numberPickerSan.value - rand
             san = "/ " + numberPickerSan.value.toString() + " - $rand = $value"
             text = "SAN Decrease"
@@ -59,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             switch = false
         }
 
-        if (string == "SAN Check" && switch == false) { // SANチェック
+        if (string == "SAN Check") { // SANチェック
             san = "≦ " + numberPickerSan.value
             if (rand <= numberPickerSan.value) {
                 san += " Success!"
@@ -71,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             text = string
         }
 
-        text = "$text $quantity D $type -> $rand $san $extreme \n"
+        text = "$text $quantity D $type -> $rand $san $extreme \n$history"
         textView.text = text
 
         return text
@@ -84,21 +78,19 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.hide() // タイトルバー非表示
 
         // 初期表示
-        textView.text = "iaia Haster \n"
+        val string = listOf("Ia! Ia! Cthulhu fhtagn!\n","Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.\n","The window! The window!\n")
+        textView.text = "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.\n" // ランダム表示にしようかな
         numberPickerSan.minValue = 0
         numberPickerSan.maxValue = 99
         numberPickerSan.value = 80
         numberPickerQuantity.minValue = 1
         numberPickerQuantity.maxValue = 10
         numberPickerQuantity.value = 1
-        numberPickerType.minValue = 1
-        numberPickerType.maxValue = 100
-        numberPickerType.value = 6
+        val data = arrayOf("2", "3", "4", "5", "6", "8", "10", "12", "16", "20", "24", "100")
+        numberPickerType.setDisplayedValues(data)
+//        numberPickerType.value = 6
 
         var history = textView.text
-
-//        switchSan.isChecked
-
 
         buttonClear.setOnClickListener {
             textView.text = ""
@@ -106,9 +98,7 @@ class MainActivity : AppCompatActivity() {
 
         // ダイスロール
         button1d4.setOnClickListener {
-            history = textView.text.toString()
-            history = "$history" + diceRoll(1,4)
-            textView.text = history
+            diceRoll(1,4)
         }
         button1d6.setOnClickListener {
             diceRoll(1,6)
@@ -122,7 +112,6 @@ class MainActivity : AppCompatActivity() {
 
         buttonSan.setOnClickListener {
             diceRoll(1,100, "SAN Check")
-
         }
 
         buttonRoll.setOnClickListener {
