@@ -26,7 +26,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="160dp"
         android:gravity="center_horizontal"
         android:text="@string/dice"
         android:textColor="?android:attr/textColorPrimary"
@@ -34,7 +33,8 @@
         android:theme="@style/NumberPicker"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSan" />
 
     <NumberPicker
         android:id="@+id/numberPickerType"
@@ -74,11 +74,14 @@
         android:id="@+id/button1d4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:text="@string/button1d4"
         app:layout_constraintBottom_toBottomOf="@+id/button1d6"
         app:layout_constraintEnd_toStartOf="@+id/button1d6"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button1d6" />
 
     <Button
@@ -98,8 +101,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:text="@string/button1d10"
         app:layout_constraintBottom_toBottomOf="@+id/button1d6"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button1d6"
         app:layout_constraintTop_toTopOf="@+id/button1d6" />
 
@@ -145,9 +151,11 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="400dp"
         android:background="@android:color/background_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

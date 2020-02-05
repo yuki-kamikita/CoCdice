@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         val history = textView.text
         var rand = 0
         var temp = 0
+        var multi = ""
         var extreme = ""
         var san = ""
         var text = ""
@@ -22,8 +23,11 @@ class MainActivity : AppCompatActivity() {
         if (quantity > 1) { // 複数ダイス
             for (i in 1..quantity) {
                 temp = Random.nextInt(type) + 1
+                if (multi == "") multi = temp.toString()
+                else multi = multi + " + " + temp.toString()
                 rand += temp
             }
+            multi = multi + " ="
         } else { // ダイス1つ
             rand = Random.nextInt(type) + 1
             if (type == 100 && string != "SAN Check" && switch == false) { // 1D100時、クリファン表記
@@ -73,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             text = string
         }
 
-        text = "$text $quantity D $type → $rand $san $extreme \n$history"
+        text = "$text $quantity D $type → $multi $rand $san $extreme \n$history"
         textView.text = text
 
         return text
