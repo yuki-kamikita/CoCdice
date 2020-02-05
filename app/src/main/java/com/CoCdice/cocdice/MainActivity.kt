@@ -90,8 +90,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.hide() // タイトルバー非表示
 
         // 初期表示
-        val string = listOf("Ia! Ia! Cthulhu fhtagn!\n","Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.\n","The window! The window!\n")
-        textView.text = string[0] // ランダム表示にしようかな
+        val string = listOf(
+             "Ia! Ia! Cthulhu fhtagn!\nPh'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn!\n"
+            ,"Ia, Ia, Hastur! Hastur kufayak!\nBulgtom fugtragurn bulgtom. Ai, ai, Hastur!\n"
+            ,"Ph'nglui mglw'nafh Cthugha Formalhaut\nn'gha-ghaa naf'l thagn! Ia! Cthugha!\n"
+            ,"Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn\n"
+            ,"The window! The window!\n")
+        textView.text = string.random()
         numberPickerSan.minValue = 0
         numberPickerSan.maxValue = 99
         numberPickerSan.value = 80
