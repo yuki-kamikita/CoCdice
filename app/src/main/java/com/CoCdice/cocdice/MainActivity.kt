@@ -2,7 +2,7 @@ package com.CoCdice.cocdice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.CompoundButton
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     private fun diceRoll(quantity: Int ,type: Int ,string: String = ""): String {
         val history = textView.text
         var rand = 0
-        var temp = 0
+        var temp: Int
         var multi = ""
         var extreme = ""
         var san = ""
@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 else multi = multi + " + " + temp.toString()
                 rand += temp
             }
-            multi = multi + " ="
+            multi = multi + " = "
         } else { // ダイス1つ
             rand = Random.nextInt(type) + 1
             if (type == 100 && string != "SAN Check" && switch == false) { // 1D100時、クリファン表記
@@ -77,8 +77,9 @@ class MainActivity : AppCompatActivity() {
             text = string
         }
 
-        text = "$text $quantity D $type → $multi $rand $san $extreme \n$history"
+        text = "$text $quantity D $type → $multi$rand $san $extreme \n$history"
         textView.text = text
+        Toast.makeText(applicationContext, "$rand", Toast.LENGTH_SHORT).show()
 
         return text
     }
@@ -103,9 +104,9 @@ class MainActivity : AppCompatActivity() {
         numberPickerQuantity.minValue = 1
         numberPickerQuantity.maxValue = 10
         numberPickerQuantity.value = 1
-        val data = arrayOf("2", "3", "4", "5", "6", "8", "10", "12", "16", "20", "24", "100")
+        val data = arrayOf("2", "3", "4", "5", "6", "8", "10", "12", "20", "100")
         numberPickerType.minValue = 0
-        numberPickerType.maxValue = 11
+        numberPickerType.maxValue = 9
         numberPickerType.setDisplayedValues(data)
 
         var history = textView.text
