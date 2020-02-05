@@ -11,8 +11,9 @@ class MainActivity : AppCompatActivity() {
 
     /* ダイスを振る */
     private fun diceRoll(quantity: Int ,type: Int ,string: String = ""): String {
-        var rand = 0
         val history = textView.text
+        var rand = 0
+        var temp = 0
         var extreme = ""
         var san = ""
         var text = ""
@@ -20,27 +21,32 @@ class MainActivity : AppCompatActivity() {
 
         if (quantity > 1) { // 複数ダイス
             for (i in 1..quantity) {
-                rand += Random.nextInt(type) + 1
+                temp = Random.nextInt(type) + 1
+                rand += temp
             }
         } else { // ダイス1つ
             rand = Random.nextInt(type) + 1
             if (type == 100 && string != "SAN Check" && switch == false) { // 1D100時、クリファン表記
                 if (rand <= 5){
-                    extreme = " Critical!"
+                    extreme = " クリティカル！"
+//                    extreme = " Critical!"
                 } else if (rand >=96) {
-                    extreme = " Fumble..."
+                    extreme = " ファンブル"
+//                    extreme = " Fumble..."
                 }
             }
         }
 
         if (switch == true && string != "SAN Check") { // SAN値減少
             value = numberPickerSan.value - rand
-            san = "/ " + numberPickerSan.value.toString() + " - $rand = $value"
-            text = "SAN Decrease"
+            san = "\n　　　　 " + numberPickerSan.value.toString() + " - $rand = $value"
+            text = "SAN減少"
+//            text = "SAN Decrease"
 
-            if (value < 0) { // SAN0
+            if (value <= 0) { // SAN0
                 value = 0
-                extreme = "Character Lost"
+                extreme = "キャラクターロスト"
+//                extreme = "Character Lost"
             } else if (rand >= numberPickerSan.value*0.2) {
                 extreme = "不定の狂気"
             } else if (rand >= 5) {
@@ -56,16 +62,18 @@ class MainActivity : AppCompatActivity() {
         if (string == "SAN Check") { // SANチェック
             san = "≦ " + numberPickerSan.value
             if (rand <= numberPickerSan.value) {
-                san += " Success!"
+                san += " 成功！"
+//                san += " Success!"
             } else {
-                san += " Failure..."
+                san += " 失敗"
+//                san += " Failure..."
                 switchSan.setChecked(true)
                 switch = true
             }
             text = string
         }
 
-        text = "$text $quantity D $type -> $rand $san $extreme \n$history"
+        text = "$text $quantity D $type → $rand $san $extreme \n$history"
         textView.text = text
 
         return text
@@ -79,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
         // 初期表示
         val string = listOf("Ia! Ia! Cthulhu fhtagn!\n","Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.\n","The window! The window!\n")
-        textView.text = "Ph'nglui mglw'nafh Cthulhu R'lyeh wgah'nagl fhtagn.\n" // ランダム表示にしようかな
+        textView.text = string[0] // ランダム表示にしようかな
         numberPickerSan.minValue = 0
         numberPickerSan.maxValue = 99
         numberPickerSan.value = 80
@@ -87,8 +95,9 @@ class MainActivity : AppCompatActivity() {
         numberPickerQuantity.maxValue = 10
         numberPickerQuantity.value = 1
         val data = arrayOf("2", "3", "4", "5", "6", "8", "10", "12", "16", "20", "24", "100")
+        numberPickerType.minValue = 0
+        numberPickerType.maxValue = 11
         numberPickerType.setDisplayedValues(data)
-//        numberPickerType.value = 6
 
         var history = textView.text
 
@@ -115,7 +124,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonRoll.setOnClickListener {
-            diceRoll(numberPickerQuantity.value, numberPickerType.value)
+            val index = numberPickerType.value
+            diceRoll(numberPickerQuantity.value, data[index].toInt())
         }
 
         // トグルスイッチ 手動on/off

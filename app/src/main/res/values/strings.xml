@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">CoCdice</string>
-    <string name="switchSan">SAN Decrease</string>
+    <string name="switchSan">SAN減少</string>
     <string name="dice">D</string>
     <string name="button1d4">1D4</string>
     <string name="button1d6">1D6</string>
     <string name="button1d10">1D10</string>
     <string name="button1d100">1D100</string>
-    <string name="buttonSanc">SANC</string>
+    <string name="buttonSanc">SAN Check</string>
     <string name="buttonClear">Clear</string>
     <string name="buttonRoll">Roll</string>
 </resources>
