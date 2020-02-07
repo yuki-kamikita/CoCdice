@@ -32,11 +32,11 @@ class MainActivity : AppCompatActivity() {
             rand = Random.nextInt(type) + 1
             if (type == 100 && string != "SAN Check" && switch == false) { // 1D100時、クリファン表記
                 if (rand <= 5){
-                    extreme = " クリティカル！"
-//                    extreme = " Critical!"
+                    extreme = "クリティカル！"
+//                    extreme = "Critical!"
                 } else if (rand >=96) {
-                    extreme = " ファンブル"
-//                    extreme = " Fumble..."
+                    extreme = "ファンブル"
+//                    extreme = "Fumble..."
                 }
             }
         }
